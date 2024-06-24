@@ -1,0 +1,24 @@
+services:
+  aryanattapt-personalpage:
+    image: aryanattapt-personalpage:latest
+    container_name: aryanattapt-personalpage
+    build:
+      context: . # Use an image built from the specified dockerfile in the current directory.
+      dockerfile: Dockerfile
+      args:
+        DOCKER_BUILDKIT: 0
+    ports:
+      - "40000:40000"
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 128M
+    networks:
+        - aryanattapt-network
+
+networks:
+  aryanattapt-network:
+    name: aryanattapt-network
+    external: true
